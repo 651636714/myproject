@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.RoleMapper">
+<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.RoleTable">
+ 		update RoleTable
+ 		<set>
+ 			<if test=" role_name !=null and role_name !='' ">
+ 				role_name=#{role_name}
+ 			</if>
+ 			<if test=" role_type !=0 ">
+ 				role_type=#{role_type}
+ 			</if>
+ 			<if test=" role_description !=null and role_description !='' ">
+ 				role_description=#{role_description}
+ 			</if>
+ 			<if test=" role_info !=null and role_info !='' ">
+ 				role_info=#{role_info}
+ 			</if>
+ 		</set>
+ 		where role_id=#{role_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.RoleTable" resultType="com.sys.table.RoleTable">
+ 		select * from RoleTable
+ 		<where>
+ 			<if test=" role_id !=0 ">
+ 				and	role_id=#{role_id}
+ 			</if>
+ 			<if test=" role_name !=null and role_name !='' ">
+ 				and	role_name=#{role_name}
+ 			</if>
+ 			<if test=" role_type !=0 ">
+ 				and	role_type=#{role_type}
+ 			</if>
+ 			<if test=" role_description !=null and role_description !='' ">
+ 				and	role_description=#{role_description}
+ 			</if>
+ 			<if test=" role_info !=null and role_info !='' ">
+ 				and	 role_info=#{role_info}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.RoleTable">
+   		delete from RoleTable where role_id=#{role_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.RoleTable">
+   		insert into RoleTable(role_name,role_type,role_description,role_info) values(#{role_name},#{role_type},#{role_description},#{role_info})
+ 	</insert>
+</mapper>

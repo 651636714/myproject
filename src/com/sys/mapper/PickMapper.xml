@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.PickMapper">
+  <!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.PickTable">
+ 		update PickTable
+ 		<set>
+ 			<if test=" pick_user_id !=0 ">
+ 				pick_user_id=#{pick_user_id}
+ 			</if>
+ 			<if test=" pick_time !=null and pick_time !='' ">
+ 				pick_time=#{pick_time}
+ 			</if>
+ 			<if test=" pick_place !=null and pick_place !='' ">
+ 				pick_place=#{pick_place}
+ 			</if>
+ 			<if test=" pick_item_desc !=null and pick_item_desc !='' ">
+ 				pick_item_desc=#{pick_item_desc}
+ 			</if>
+ 			<if test=" pick_status !=null and pick_status !='' ">
+ 				pick_status=#{pick_status}
+ 			</if>
+ 			<if test=" pick_phone !=null and pick_phone !='' ">
+ 				pick_phone=#{pick_phone}
+ 			</if>
+ 		</set>
+ 		where pick_id=#{pick_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.PickTable" resultType="com.sys.table.PickTable">
+ 		select * from PickTable
+ 		<where>
+ 			<if test=" pick_id !=0 ">
+ 				and	pick_id=#{pick_id}
+ 			</if>
+ 			<if test=" pick_user_id !=0 ">
+ 				and	pick_user_id=#{pick_user_id}
+ 			</if>
+ 			<if test=" pick_time !=null and pick_time !='' ">
+ 				and	pick_time=#{pick_time}
+ 			</if>
+ 			<if test=" pick_place !=null and pick_place !='' ">
+ 				and	pick_place=#{pick_place}
+ 			</if>
+ 			<if test=" pick_item_desc !=null and pick_item_desc !='' ">
+ 				and	pick_item_desc=#{pick_item_desc}
+ 			</if>
+ 			<if test=" pick_status !=null and pick_status !='' ">
+ 				and	pick_status=#{pick_status}
+ 			</if>
+ 			<if test=" pick_phone !=null and pick_phone !='' ">
+ 				and	pick_phone=#{pick_phone}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.PickTable">
+   		delete from PickTable where pick_id=#{pick_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.PickTable">
+   		insert into PickTable(pick_user_id,pick_time,pick_place,pick_item_desc,pick_status,pick_phone) values(#{pick_user_id},#{pick_time},#{pick_place},#{pick_item_desc},#{pick_status},#{pick_phone})
+ 	</insert>
+</mapper>

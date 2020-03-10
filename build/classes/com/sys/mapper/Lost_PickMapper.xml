@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.Lost_PickMapper">
+  	<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.Lost_PickTable">
+ 		update Lost_PickTable
+ 		<set>
+ 			<if test=" lost_id !=0 ">
+ 				lost_id=#{lost_id}
+ 			</if>
+ 			<if test="pick_id !=0 ">
+ 				pick_id=#{pick_id}
+ 			</if> 	
+ 		</set>
+ 		where lost_pick_id=#{lost_pick_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.Lost_PickTable" resultType="com.sys.table.Lost_PickTable">
+ 		select * from Lost_PickTable
+ 		<where>
+ 			<if test=" lost_pick_id !=0 ">
+ 				and	lost_pick_id=#{lost_pick_id}
+ 			</if>
+ 			<if test=" lost_id !=0 ">
+ 				and	lost_id=#{lost_id}
+ 			</if>
+ 			 <if test=" pick_id !=0 ">
+ 				and	pick_id=#{pick_id}
+ 			</if>
+ 		</where>
+ 	</select>
+ 	<!-- 删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.Lost_PickTable">
+   		delete from Lost_PickTable where lost_pick_id=#{lost_pick_id}
+ 	</delete>
+ 	 <!-- 添加-->
+ 	 <insert id="inster" parameterType="com.sys.table.Lost_PickTable">
+   		insert into Lost_pickTable(lost_id,pick_id) values(#{lost_id},#{pick_id})
+ 	</insert>
+</mapper>

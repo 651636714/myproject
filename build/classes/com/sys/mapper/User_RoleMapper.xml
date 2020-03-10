@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.User_RoleMapper">
+  	<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.User_RoleTable">
+ 		update User_RoleTable
+ 		<set>
+ 			<if test=" user_id !=0 ">
+ 				user_id=#{user_id}
+ 			</if>
+ 			<if test=" role_id !=0 ">
+ 				role_id=#{role_id}
+ 			</if>
+ 		</set>
+ 		where user_role_id=#{user_role_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.User_RoleTable" resultType="com.sys.table.User_RoleTable">
+ 		select * from User_RoleTable
+ 		<where>
+ 			<if test=" user_role_id !=0 ">
+ 				and	user_role_id=#{user_role_id}
+ 			</if>
+ 			<if test=" user_id !=0 ">
+ 				and user_id=#{user_id}
+ 			</if>
+ 			<if test=" role_id !=0 ">
+ 				and role_id=#{role_id}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.User_RoleTable">
+   		delete from User_RoleTable
+   		<where>
+ 			<if test=" user_role_id !=0 ">
+ 				and	user_role_id=#{user_role_id}
+ 			</if>
+ 			<if test=" user_id !=0 ">
+ 				and user_id=#{user_id}
+ 			</if>
+ 			<if test=" role_id !=0 ">
+ 				and role_id=#{role_id}
+ 			</if>
+ 		</where>
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.User_RoleTable">
+   		insert into User_RoleTable(user_id,role_id) values(#{user_id},#{role_id})
+ 	</insert>
+</mapper>

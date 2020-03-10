@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.ReportMapper">
+<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.ReportTable">
+ 		update ReportTable
+ 		<set>
+ 		 	<if test=" report_type !=null and report_type !='' ">
+ 				report_type=#{report_type}
+ 			</if>
+ 			<if test=" report_user_id !=0 ">
+ 				report_user_id=#{report_user_id}
+ 			</if>
+ 			<if test=" report_time !=null and report_time !='' ">
+ 				report_time=#{report_time}
+ 			</if>
+ 			<if test=" report_place !=null and report_place !='' ">
+ 				report_place=#{report_place}
+ 			</if>
+ 			<if test=" report_desc !=null and report_desc !='' ">
+ 				report_desc=#{report_desc}
+ 			</if>
+ 			<if test=" report_status !=null and report_status !='' ">
+ 				report_status=#{report_status}
+ 			</if>
+ 			 <if test=" report_is_handle !=null and report_is_handle !='' ">
+ 				report_is_handle=#{report_is_handle}
+ 			</if>
+ 		</set>
+ 		where report_id=#{report_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.ReportTable" resultType="com.sys.table.ReportTable">
+ 		select * from ReportTable
+ 		<where>
+ 			<if test=" report_id !=0 ">
+ 				and	report_id=#{report_id}
+ 			</if>
+ 			<if test=" report_type !=null and report_type !='' ">
+ 				and	report_type=#{report_type}
+ 			</if>
+ 			<if test=" report_user_id !=0 ">
+ 				and	report_user_id=#{report_user_id}
+ 			</if>
+ 			<if test=" report_time !=null and report_time !='' ">
+ 				and	report_time=#{report_time}
+ 			</if>
+ 			<if test=" report_place !=null and report_place !='' ">
+ 				and	report_place=#{report_place}
+ 			</if>
+ 			<if test=" report_desc !=null and report_desc !='' ">
+ 				and	report_desc=#{report_desc}
+ 			</if>
+ 			<if test=" report_status !=null and report_status !='' ">
+ 				and	report_status=#{report_status}
+ 			</if>
+ 			 <if test=" report_is_handle !=null and report_is_handle !='' ">
+ 				and	report_is_handle=#{report_is_handle}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.ReportTable">
+   		delete from ReportTable where report_id=#{report_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.ReportTable">
+   		insert into ReportTable(report_type,report_user_id,report_time,report_place,report_desc,report_status,report_is_handle) values(#{report_type},#{report_user_id},#{report_time},#{report_place},#{report_desc},#{report_status},#{report_is_handle})
+ 	</insert>
+</mapper>

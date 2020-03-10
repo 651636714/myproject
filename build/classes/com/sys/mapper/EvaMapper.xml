@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.EvaMapper">
+ 	<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.EvaTable">
+ 		update EvaTable
+ 		<set>
+ 			<if test=" eva_person_id !=0 ">
+ 				eva_person_id=#{eva_person_id}
+ 			</if>
+ 			<if test=" eva_report_id !=0 ">
+ 				eva_report_id=#{eva_report_id}
+ 			</if>
+ 			<if test=" eva_time !=null and eva_time !='' ">
+ 				eva_time=#{eva_time}
+ 			</if>
+ 			<if test=" eva_grade !=null and eva_grade !='' ">
+ 				eva_grade=#{eva_grade}
+ 			</if>
+ 			<if test=" eva_contents !=null and eva_contents !='' ">
+ 				eva_contents=#{eva_contents}
+ 			</if>
+ 			<if test=" eva_sugg !=null and eva_sugg !='' ">
+ 				eva_sugg=#{eva_sugg}
+ 			</if>
+ 		</set>
+ 		where eva_id=#{eva_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.EvaTable" resultType="com.sys.table.EvaTable">
+ 		select * from EvaTable
+ 		<where>
+ 			<if test=" eva_id !=0 ">
+ 				and	eva_id=#{eva_id}
+ 			</if>
+ 			<if test=" eva_person_id !=0 ">
+ 				and	eva_person_id=#{eva_person_id}
+ 			</if>
+ 			<if test=" eva_report_id !=0 ">
+ 				and	eva_report_id=#{eva_report_id}
+ 			</if>
+ 			<if test=" eva_time !=null and eva_time !='' ">
+ 				and	eva_time=#{eva_time}
+ 			</if>
+ 			<if test=" eva_grade !=null and eva_grade !='' ">
+ 				and	eva_grade=#{eva_grade}
+ 			</if>
+ 			<if test=" eva_contents !=null and eva_contents !='' ">
+ 				and	eva_contents=#{eva_contents}
+ 			</if>
+ 			<if test=" eva_sugg !=null and eva_sugg !='' ">
+ 				and	eva_sugg=#{eva_sugg}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.EvaTable">
+   		delete from EvaTable where eva_id=#{eva_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.EvaTable">
+   		insert into EvaTable(eva_person_id,eva_report_id,eva_time,eva_grade,eva_contents,eva_sugg) values(#{eva_person_id},#{eva_report_id},#{eva_time},#{eva_grade},#{eva_contents},#{eva_sugg})
+ 	</insert>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.ServiceMapper">
+  	<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.ServiceTable">
+ 		update ServiceTable
+ 		<set>
+ 			<if test=" service_person_id !=0 ">
+ 				service_person_id=#{service_person_id}
+ 			</if>
+ 			<if test=" service_report_id !=0 ">
+ 				service_report_id=#{service_report_id}
+ 			</if>
+ 			<if test=" service_time !=null and service_time !='' ">
+ 				service_time=#{service_time}
+ 			</if>
+ 			<if test=" service_result !=null and service_result !='' ">
+ 				service_result=#{service_result}
+ 			</if>
+ 			 <if test=" service_eva_id !=0 ">
+ 				service_eva_id=#{service_eva_id}
+ 			</if>
+ 		</set>
+ 		where service_id=#{service_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.ServiceTable" resultType="com.sys.table.ServiceTable">
+ 		select * from ServiceTable
+ 		<where>
+ 			<if test=" service_id !=0 ">
+ 				and	service_id=#{service_id}
+ 			</if>
+ 			<if test=" service_person_id !=0 ">
+ 				and	service_person_id=#{service_person_id}
+ 			</if>
+ 			<if test=" service_report_id !=0 ">
+ 				and	service_report_id=#{service_report_id}
+ 			</if>
+ 			<if test=" service_time !=null and service_time !='' ">
+ 				and	service_time=#{service_time}
+ 			</if>
+ 			<if test=" service_result !=null and service_result !='' ">
+ 				and	service_result=#{service_result}
+ 			</if>
+ 			 <if test=" service_eva_id !=0 ">
+ 				and	service_eva_id=#{service_eva_id}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.ServiceTable">
+   		delete from ServiceTable where service_id=#{service_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.ServiceTable">
+   		insert into ServiceTable(service_person_id,service_report_id,service_time,service_result,service_eva_id) values(#{service_person_id},#{service_report_id},#{service_time},#{service_result},#{service_eva_id})
+ 	</insert>
+</mapper>

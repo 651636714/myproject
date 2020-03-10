@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.LostMapper">
+  	<!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.LostTable">
+ 		update LostTable
+ 		<set>
+ 			<if test=" lost_user_id !=0 ">
+ 				lost_user_id=#{lost_user_id}
+ 			</if>
+ 			<if test=" lost_time !=null and lost_time !='' ">
+ 				lost_time=#{lost_time}
+ 			</if>
+ 			<if test=" lost_place !=null and lost_place !='' ">
+ 				lost_place=#{lost_place}
+ 			</if>
+ 			<if test=" lost_item_desc !=null and lost_item_desc !='' ">
+ 				lost_item_desc=#{lost_item_desc}
+ 			</if>
+ 			 <if test=" lost_status !=null and lost_status !='' ">
+ 				lost_status=#{lost_status}
+ 			</if>
+ 			 <if test=" lost_phone !=null and lost_phone !='' ">
+ 				lost_phone=#{lost_phone}
+ 			</if>
+ 		</set>
+ 		where lost_id=#{lost_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.LostTable" resultType="com.sys.table.LostTable">
+ 		select * from LostTable
+ 		<where>
+ 			<if test=" lost_id !=0 ">
+ 				and	lost_id=#{lost_id}
+ 			</if>
+ 			<if test=" lost_user_id !=0 ">
+ 				and	lost_user_id=#{lost_user_id}
+ 			</if>
+ 			<if test=" lost_time !=null and lost_time !='' ">
+ 				and	lost_time=#{lost_time}
+ 			</if>
+ 			<if test=" lost_place !=null and lost_place !='' ">
+ 				and	lost_place=#{lost_place}
+ 			</if>
+ 			<if test=" lost_item_desc !=null and lost_item_desc !='' ">
+ 				and	lost_item_desc=#{lost_item_desc}
+ 			</if>
+ 			 <if test=" lost_status !=null and lost_status !='' ">
+ 				and	lost_status=#{lost_status}
+ 			</if>
+ 			 <if test=" lost_phone !=null and lost_phone !='' ">
+ 				and	lost_phone=#{lost_phone}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.LostTable">
+   		delete from LostTable where lost_id=#{lost_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.LostTable">
+   		insert into LostTable(lost_user_id,lost_time,lost_place,lost_item_desc,lost_status,lost_phone) values(#{lost_user_id},#{lost_time},#{lost_place},#{lost_item_desc},#{lost_status},#{lost_phone})
+ 	</insert>
+</mapper>

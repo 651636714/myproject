@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+                           "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sys.mapper.RelesaseMapper">
+  <!-- 修改 -->
+ 	<update id="update" parameterType="com.sys.table.RelesaseTable">
+ 		update RelesaseTable
+ 		<set>
+ 			<if test=" relesase_user_id !=0 ">
+ 				relesase_user_id=#{relesase_user_id}
+ 			</if>
+ 			<if test=" relesase_message_id !=0 ">
+ 				relesase_message_id=#{relesase_message_id}
+ 			</if>
+ 		</set>
+ 		where relesase_id=#{relesase_id}
+ 	</update>
+ 	<!-- 查询 -->
+ 	<select id="select" parameterType="com.sys.table.RelesaseTable" resultType="com.sys.table.RelesaseTable">
+ 		select * from RelesaseTable
+ 		<where>
+ 			<if test=" relesase_id !=0 ">
+ 				and	relesase_id=#{relesase_id}
+ 			</if>
+ 			<if test=" relesase_user_id !=0 ">
+ 				and	relesase_user_id=#{relesase_user_id}
+ 			</if>
+ 			<if test=" relesase_message_id !=0 ">
+ 				and	relesase_message_id=#{relesase_message_id}
+ 			</if>
+ 		</where>
+ 	</select>
+    <!-- 根据id删除 -->
+ 	 <delete id="delete" parameterType="com.sys.table.RelesaseTable">
+   		delete from RelesaseTable where relesase_id=#{relesase_id}
+ 	</delete>
+ 	 <!-- 添加评价表 -->
+ 	 <insert id="inster" parameterType="com.sys.table.RelesaseTable">
+   		insert into RelesaseTable(relesase_user_id,relesase_message_id) values(#{relesase_user_id},#{relesase_message_id})
+ 	</insert>
+</mapper>
